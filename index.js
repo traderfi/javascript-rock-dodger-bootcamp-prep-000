@@ -124,6 +124,11 @@ function moveDodger(e) {
        moveDodgerLeft();
      }
    })
+   document.addEventListener('keydown', function(e){
+     if(e.which === 39){
+       moveDodgerRight();
+     }
+   })
 }
 
 function moveDodgerLeft() {
@@ -132,10 +137,17 @@ function moveDodgerLeft() {
    * This function should move DODGER to the left
    * (mabye 4 pixels?). Use window.requestAnimationFrame()!
    */
-   var leftNumbers = dodger.style.left.replace('px', '');
+    var leftNumbers = dodger.style.left.replace('px', '');
        var left = parseInt(leftNumbers, 10);
+       function step(){
+          dodger.style.left = `${left - 4}px`;
+
+
+
+       }
+
        if (left > 0) {
-         dodger.style.left = `${left - 4}px`
+         window.requestAnimationFrame(step);
        }
    
 }
@@ -145,7 +157,17 @@ function moveDodgerRight() {
   /**
    * This function should move DODGER to the right
    * (mabye 4 pixels?). Use window.requestAnimationFrame()!
+   * 
    */
+   var leftNumbers = dodger.style.left.replace('px', '');
+   var left = parseInt(leftNumbers, 10);
+   function step(){
+      dodger.style.left = `${left + 4}px`;
+   }
+
+   if (left < 360) {
+     window.requestAnimationFrame(step);
+   }
 }
 
 /**
